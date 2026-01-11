@@ -110,7 +110,7 @@ export default function Navbar() {
                   <Link to="/login" className="text-gray-700 hover:text-primary">Login</Link>
                 </Button>
                 <Button variant="outline" size="sm" className="justify-start">
-                  <Link to="/signup/buyer" className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">
+                  <Link to="/signup/buyer" className="rounded hover:bg-blue-600">
                   Join Now
                 </Link>
                 </Button>
