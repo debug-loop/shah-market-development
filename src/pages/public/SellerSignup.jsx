@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { authService, categoryService } from '../../api/services';
 import { useAuth } from '../../context/AuthContext';
 import SEO from '../../components/SEO';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function SellerSignup() {
   const [categories, setCategories] = useState([]);
@@ -79,6 +81,7 @@ export default function SellerSignup() {
 
   return (
     <>
+    <Navbar />
       <SEO title="Seller Signup" />
       <div className="min-h-screen bg-gray-50 py-12 px-4">
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
@@ -186,6 +189,7 @@ export default function SellerSignup() {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

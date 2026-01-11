@@ -1,72 +1,130 @@
-import { Link } from 'react-router-dom';
+import { useState } from "react";
 import { useAuth } from '../context/AuthContext';
-import { useState } from 'react';
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navLinks = [
+  { label: "Marketplace", href: "/browse" },
+  { label: "How it Works", href: "/#how-it-works" },
+  { label: "Why Choose Us", href: "/#why-choose-us" },
+  { label: "Quick Contact", href: "/#contact" },
+  { label: "Legal & Policy", href: "/legal" },
+];
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-primary">
-              Shah Marketplace
-            </Link>
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg gradient-hero">
+            <span className="text-xl font-bold text-white">S</span>
           </div>
+          <span className="text-xl font-bold text-foreground">
+            Shah <span className="text-gradient">Freelance</span>
+          </span>
+        </Link>
 
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/browse" className="text-gray-700 hover:text-primary">Browse</Link>
-            
-            {!user ? (
-              <>
-                <Link to="/login" className="text-gray-700 hover:text-primary">Login</Link>
-                <Link to="/signup" className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">
-                  Sign Up
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              to={link.href}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                location.pathname === link.href
+                  ? "text-primary"
+                  : "text-muted-foreground"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Desktop Action Buttons */}
+        <div className="hidden lg:flex items-center gap-3">
+          <Button variant="ghost" size="sm">
+            <Link to="/login">Login</Link>
+          </Button>
+          <Button variant="outline" size="sm">
+            <Link to="/signup/buyer" className="hover:bg-blue-600">
+                  Join Now
                 </Link>
-              </>
-            ) : (
-              <>
-                {user.role === 'buyer' && (
-                  <Link to="/buyer/dashboard" className="text-gray-700 hover:text-primary">Dashboard</Link>
-                )}
-                {user.role === 'seller' && (
-                  <Link to="/seller/dashboard" className="text-gray-700 hover:text-primary">Dashboard</Link>
-                )}
-                {(user.role === 'admin' || user.role === 'super-admin') && (
-                  <Link to="/admin/dashboard" className="text-gray-700 hover:text-primary">Admin</Link>
-                )}
-                <div className="relative">
-                  <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center text-gray-700 hover:text-primary"
-                  >
-                    <span>{user.fullName}</span>
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  
-                  {isOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                      <Link to="/wallet" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                        Wallet
-                      </Link>
-                      <button
-                        onClick={logout}
-                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
-          </div>
+          </Button>
+          <Button size="sm" className="gradient-hero text-white border-0">
+            <Link to="/signup/seller">Become Seller</Link>
+          </Button>
+          <Button size="sm" variant="secondary">
+            Join Freelancer
+          </Button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden p-2 rounded-md hover:bg-accent"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
-    </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden border-t border-border bg-background"
+          >
+            <div className="container py-4 space-y-4">
+              <nav className="flex flex-col gap-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cn(
+                      "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                      location.pathname === link.href
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:bg-accent"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="flex flex-col gap-2 pt-4 border-t border-border">
+                <Button variant="ghost" size="sm" className="justify-start">
+                  <Link to="/login" className="text-gray-700 hover:text-primary">Login</Link>
+                </Button>
+                <Button variant="outline" size="sm" className="justify-start">
+                  <Link to="/signup/buyer" className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">
+                  Join Now
+                </Link>
+                </Button>
+                <Button size="sm" className="gradient-hero text-white border-0 justify-start">
+                  <Link to="/signup/seller">Become Seller</Link>
+                </Button>
+                <Button size="sm" variant="secondary" className="justify-start">
+                  Join Freelancer
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }
