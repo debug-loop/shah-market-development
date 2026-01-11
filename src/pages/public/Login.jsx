@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../../api/services';
 import { useAuth } from '../../context/AuthContext';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import SEO from '../../components/SEO';
 
 export default function Login() {
@@ -37,6 +39,7 @@ export default function Login() {
 
   return (
     <>
+    <Navbar />
       <SEO title="Login" />
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
         <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow">
@@ -88,6 +91,7 @@ export default function Login() {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

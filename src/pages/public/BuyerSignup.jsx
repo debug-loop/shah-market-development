@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../../api/services';
 import { useAuth } from '../../context/AuthContext';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import SEO from '../../components/SEO';
 
 export default function BuyerSignup() {
@@ -32,6 +34,7 @@ export default function BuyerSignup() {
 
   return (
     <>
+    <Navbar />
       <SEO title="Buyer Signup" />
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
         <div className="max-w-md w-full bg-white p-8 rounded-lg shadow">
@@ -86,6 +89,7 @@ export default function BuyerSignup() {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
