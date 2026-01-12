@@ -158,7 +158,7 @@ export default function ProfilePage() {
                 <CardTitle>Account Overview</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="text-center p-4 rounded-lg bg-muted">
                     <ShoppingBag className="h-6 w-6 mx-auto mb-2 text-primary" />
                     <p className="text-2xl font-bold">{mockStats.totalOrders}</p>
