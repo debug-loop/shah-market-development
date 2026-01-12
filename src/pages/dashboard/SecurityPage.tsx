@@ -177,14 +177,14 @@ export default function SecurityPage() {
               {devices.map((device) => (
                 <div
                   key={device.id}
-                  className="flex items-center justify-between p-4 border rounded-lg"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border rounded-lg"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="p-2 bg-muted rounded-lg">
+                    <div className="p-2 bg-muted rounded-lg shrink-0">
                       <device.icon className="h-5 w-5" />
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <p className="font-medium">{device.device}</p>
                         {device.current && (
                           <Badge variant="secondary" className="text-xs">
@@ -198,7 +198,7 @@ export default function SecurityPage() {
                     </div>
                   </div>
                   {!device.current && (
-                    <Button variant="ghost" size="sm" className="text-destructive">
+                    <Button variant="ghost" size="sm" className="text-destructive sm:shrink-0">
                       Revoke
                     </Button>
                   )}

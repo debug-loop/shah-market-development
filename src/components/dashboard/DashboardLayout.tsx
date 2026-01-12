@@ -153,7 +153,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       </aside>
 
       {/* Main content area */}
-      <div className="">
+      <div className="lg:ml-64">
         {/* Top navbar */}
         <header className="sticky top-0 z-30 h-16 bg-background/80 backdrop-blur-md border-b border-border">
           <div className="flex h-full items-center justify-between px-4 lg:px-6">
