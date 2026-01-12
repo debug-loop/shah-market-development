@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
+import { useAuth } from '../../context/AuthContext';
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -43,6 +44,7 @@ interface AdminDashboardLayoutProps {
 export function AdminDashboardLayout({ children }: AdminDashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   const adminUser = {
     name: 'Admin User',
@@ -118,15 +120,14 @@ export function AdminDashboardLayout({ children }: AdminDashboardLayoutProps) {
 
           {/* Logout */}
           <div className="p-4 border-t border-sidebar-border">
-            <Link to="/admin/login">
               <Button
                 variant="ghost"
                 className="w-full justify-start text-sidebar-muted hover:text-destructive hover:bg-destructive/10"
+                onClick={logout}
               >
                 <LogOut className="h-5 w-5 mr-3" />
                 Logout
               </Button>
-            </Link>
           </div>
         </div>
       </aside>
@@ -188,10 +189,10 @@ export function AdminDashboardLayout({ children }: AdminDashboardLayoutProps) {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild className="text-destructive focus:text-destructive">
-                    <Link to="/admin/login">
+                    <Button onClick={logout}>
                       <LogOut className="h-4 w-4 mr-2" />
                       Logout
-                    </Link>
+                    </Button>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
