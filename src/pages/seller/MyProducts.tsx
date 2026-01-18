@@ -62,7 +62,7 @@ export default function MyProducts() {
       setLoading(true);
       const response = await productService.getSellerProducts();
       if (response.data.success) {
-        setProducts(response.data.data);
+        setProducts(response.data.data.products);
       }
     } catch (error: any) {
       toast({
