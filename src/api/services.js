@@ -21,7 +21,8 @@ export const adminService = {
   freezeUser: (id) => api.put(`/admin/users/${id}/freeze`),
   unfreezeUser: (id) => api.put(`/admin/users/${id}/unfreeze`),
   getPendingProducts: () => api.get('/admin/products/pending'),
-  approveProduct: (id) => api.post(`/admin/products/${id}/approve`),
+  getProductChanges: (id) => api.get(`/admin/products/${id}/changes`),
+  approveProduct: (id, data) => api.post(`/admin/products/${id}/approve`, data),
   rejectProduct: (id, data) => api.post(`/admin/products/${id}/reject`, data),
   getPendingWithdrawals: () => api.get('/admin/withdrawals/pending'),
   approveWithdrawal: (id) => api.post(`/admin/withdrawals/${id}/approve`),
@@ -29,6 +30,22 @@ export const adminService = {
   getPlatformSettings: () => api.get('/admin/settings'),
   updatePlatformSetting: (data) => api.put('/admin/settings', data),
   getAuditLogs: (params) => api.get('/admin/logs', { params }),
+};
+
+// Section Services (Public)
+export const sectionService = {
+  getAll: () => api.get('/sections'),
+  getCategories: (id) => api.get(`/sections/${id}/categories`),
+};
+
+// Admin Section Services
+export const adminSectionService = {
+  getAll: (params) => api.get('/admin/sections', { params }),
+  getById: (id) => api.get(`/admin/sections/${id}`),
+  create: (data) => api.post('/admin/sections', data),
+  update: (id, data) => api.put(`/admin/sections/${id}`, data),
+  delete: (id) => api.delete(`/admin/sections/${id}`),
+  reorder: (data) => api.patch('/admin/sections/reorder', data),
 };
 
 // Product Services
@@ -44,6 +61,16 @@ export const productService = {
 // Category Services
 export const categoryService = {
   getAll: () => api.get('/categories'),
+};
+
+// Admin Category Services
+export const adminCategoryService = {
+  getAll: (params) => api.get('/admin/categories', { params }),
+  getById: (id) => api.get(`/admin/categories/${id}`),
+  create: (data) => api.post('/admin/categories', data),
+  update: (id, data) => api.put(`/admin/categories/${id}`, data),
+  delete: (id) => api.delete(`/admin/categories/${id}`),
+  reorder: (data) => api.patch('/admin/categories/reorder', data),
 };
 
 // Order Services

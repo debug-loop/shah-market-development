@@ -17,6 +17,11 @@ import Browse from "./pages/Browse";
 import ProductDetail from './pages/public/ProductDetail';
 import NotFound from './pages/public/NotFound';
 
+// Marketplace Pages
+import Marketplace from './pages/marketplace/Marketplace';
+import SectionView from './pages/marketplace/SectionView';
+import ProductListing from './pages/marketplace/ProductListing';
+
 // Buyer Pages
 import BuyerDashboard from './pages/buyer/BuyerDashboard';
 import BuyerOrders from './pages/buyer/BuyerOrders';
@@ -39,9 +44,6 @@ import Earnings from "./pages/seller/Earnings";
 import Messages from "./pages/seller/Messages";
 import Profile from "./pages/seller/Profile";
 import Support from "./pages/seller/Support";
-// import SellerProducts from './pages/seller_/SellerProducts';
-// import AddProduct from './pages/seller_/AddProduct';
-// import SellerOrders from './pages/seller_/SellerOrders';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -64,7 +66,12 @@ export default function App() {
           <Route path="/signup/seller" element={<SellerSignup />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          
+
+          {/* Marketplace Routes */}
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/marketplace/:sectionSlug" element={<SectionView />} />
+          <Route path="/marketplace/:sectionSlug/:categorySlug" element={<ProductListing />} />
+
           {/* Buyer Routes */}
           <Route path="/buyer" element={<ProtectedRoute roles={['buyer']}><DashboardLayout role="buyer" /></ProtectedRoute>}>
             <Route path="dashboard" element={<DashboardHome />} />
@@ -91,9 +98,6 @@ export default function App() {
             <Route path="messages" element={<Messages />} />
             <Route path="profile" element={<Profile />} />
             <Route path="support" element={<Support />} />
-            {/* <Route path="products" element={<SellerProducts />} /> */}
-            {/* <Route path="products/add" element={<AddProduct />} /> */}
-            {/* <Route path="orders" element={<SellerOrders />} /> */}
           </Route>
 
           {/* Admin Routes */}
