@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { AdminDashboardLayout } from '@/components/dashboard/AdminDashboardLayout';
 import { Plus, Edit, Trash2, GripVertical, Save, X, Filter } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -254,12 +255,13 @@ export default function AdminCategories() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">Categories Management</h1>
-          <p className="text-muted-foreground">Manage categories within marketplace sections</p>
-        </div>
+    <AdminDashboardLayout>
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">Categories Management</h1>
+            <p className="text-muted-foreground">Manage categories within marketplace sections</p>
+          </div>
         <Button onClick={() => handleOpenDialog()}>
           <Plus className="h-4 w-4 mr-2" />
           Add Category
@@ -508,6 +510,7 @@ export default function AdminCategories() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </div>
+      </div>
+    </AdminDashboardLayout>
   );
 }
