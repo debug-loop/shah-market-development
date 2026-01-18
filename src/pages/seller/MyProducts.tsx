@@ -62,12 +62,18 @@ export default function MyProducts() {
       setLoading(true);
       const response = await productService.getSellerProducts();
       if (response.data.success) {
-        setProducts(response.data.data);
+        // Ensure we always set an array
+        const productsData = response.data.data;
+        setProducts(Array.isArray(productsData) ? productsData : []);
+      } else {
+        setProducts([]);
       }
     } catch (error: any) {
+      console.error('Failed to fetch products:', error);
+      setProducts([]); // Set empty array on error
       toast({
         title: 'Error',
-        description: 'Failed to load products',
+        description: error.response?.data?.message || 'Failed to load products',
         variant: 'destructive',
       });
     } finally {
