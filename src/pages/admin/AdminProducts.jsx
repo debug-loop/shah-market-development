@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { AdminDashboardLayout } from '@/components/dashboard/AdminDashboardLayout';
 import { AlertTriangle, CheckCircle, XCircle, Eye, ChevronRight, ChevronDown } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -22,7 +23,6 @@ import {
 } from '@/components/ui/collapsible';
 import { useToast } from '@/hooks/use-toast';
 import { adminService } from '@/api/services';
-import SEO from '@/components/SEO';
 
 export default function AdminProducts() {
   const { toast } = useToast();
@@ -175,18 +175,19 @@ export default function AdminProducts() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-muted-foreground">Loading pending products...</div>
-      </div>
+      <AdminDashboardLayout>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-muted-foreground">Loading pending products...</div>
+        </div>
+      </AdminDashboardLayout>
     );
   }
 
   return (
-    <>
-      <SEO title="Pending Products - Admin" />
-      <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <AdminDashboardLayout>
+      <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Pending Products</h1>
+          <h1 className="text-2xl font-bold text-foreground">Pending Products</h1>
           <p className="text-muted-foreground">Review and approve products from sellers</p>
         </div>
 
@@ -443,6 +444,6 @@ export default function AdminProducts() {
           </AlertDialogContent>
         </AlertDialog>
       </div>
-    </>
+    </AdminDashboardLayout>
   );
 }

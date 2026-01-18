@@ -14,6 +14,8 @@ import {
   Bell,
   ChevronDown,
   Shield,
+  Layers,
+  FolderTree,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -28,10 +30,12 @@ import { cn } from '@/lib/utils';
 import { useAuth } from '../../context/AuthContext';
 
 const navigation = [
-  { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+  { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Manage Users', href: '/admin/users', icon: Users },
   { name: 'Seller Applications', href: '/admin/sellers', icon: UserCheck },
   { name: 'Pending Products', href: '/admin/products', icon: Package },
+  { name: 'Sections', href: '/admin/sections', icon: Layers },
+  { name: 'Categories', href: '/admin/categories', icon: FolderTree },
   { name: 'Disputes', href: '/admin/disputes', icon: AlertTriangle },
   { name: 'Withdrawals', href: '/admin/withdrawals', icon: CreditCard },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
