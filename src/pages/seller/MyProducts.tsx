@@ -65,9 +65,11 @@ export default function MyProducts() {
         setProducts(response.data.data.products);
       }
     } catch (error: any) {
+      console.error('Failed to fetch products:', error);
+      setProducts([]); // Set empty array on error
       toast({
         title: 'Error',
-        description: 'Failed to load products',
+        description: error.response?.data?.message || 'Failed to load products',
         variant: 'destructive',
       });
     } finally {
