@@ -377,7 +377,7 @@ export default function AdminProducts() {
 
         {/* Approve Dialog */}
         <AlertDialog open={approveDialogOpen} onOpenChange={setApproveDialogOpen}>
-          <AlertDialogContent>
+          <AlertDialogContent className="sm:max-w-[425px]">
             <AlertDialogHeader>
               <AlertDialogTitle>Approve Product</AlertDialogTitle>
               <AlertDialogDescription>
@@ -385,16 +385,17 @@ export default function AdminProducts() {
                 {selectedProduct?.isEdited && ' This product has been edited by the seller.'}
               </AlertDialogDescription>
             </AlertDialogHeader>
-            <div className="py-4">
-              <Label htmlFor="adminNotes" className="text-sm">Admin Notes (Optional)</Label>
-              <Textarea
-                id="adminNotes"
-                value={adminNotes}
-                onChange={(e) => setAdminNotes(e.target.value)}
-                placeholder="Add any internal notes about this approval..."
-                rows={3}
-                className="mt-2"
-              />
+            <div className="grid gap-4 py-4">
+              <div className="grid gap-2">
+                <Label htmlFor="adminNotes">Admin Notes (Optional)</Label>
+                <Textarea
+                  id="adminNotes"
+                  value={adminNotes}
+                  onChange={(e) => setAdminNotes(e.target.value)}
+                  placeholder="Add any internal notes about this approval..."
+                  rows={3}
+                />
+              </div>
             </div>
             <AlertDialogFooter>
               <AlertDialogCancel onClick={() => setAdminNotes('')}>Cancel</AlertDialogCancel>
@@ -411,7 +412,7 @@ export default function AdminProducts() {
 
         {/* Reject Dialog */}
         <AlertDialog open={rejectDialogOpen} onOpenChange={setRejectDialogOpen}>
-          <AlertDialogContent>
+          <AlertDialogContent className="sm:max-w-[425px]">
             <AlertDialogHeader>
               <AlertDialogTitle>Reject Product</AlertDialogTitle>
               <AlertDialogDescription>
@@ -419,17 +420,18 @@ export default function AdminProducts() {
                 The seller will see this message.
               </AlertDialogDescription>
             </AlertDialogHeader>
-            <div className="py-4">
-              <Label htmlFor="rejectionReason" className="text-sm">Rejection Reason *</Label>
-              <Textarea
-                id="rejectionReason"
-                value={rejectionReason}
-                onChange={(e) => setRejectionReason(e.target.value)}
-                placeholder="Explain why this product is being rejected..."
-                rows={3}
-                className="mt-2"
-                required
-              />
+            <div className="grid gap-4 py-4">
+              <div className="grid gap-2">
+                <Label htmlFor="rejectionReason">Rejection Reason *</Label>
+                <Textarea
+                  id="rejectionReason"
+                  value={rejectionReason}
+                  onChange={(e) => setRejectionReason(e.target.value)}
+                  placeholder="Explain why this product is being rejected..."
+                  rows={3}
+                  required
+                />
+              </div>
             </div>
             <AlertDialogFooter>
               <AlertDialogCancel onClick={() => setRejectionReason('')}>Cancel</AlertDialogCancel>
