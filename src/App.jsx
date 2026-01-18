@@ -39,9 +39,6 @@ import Earnings from "./pages/seller/Earnings";
 import Messages from "./pages/seller/Messages";
 import Profile from "./pages/seller/Profile";
 import Support from "./pages/seller/Support";
-// import SellerProducts from './pages/seller_/SellerProducts';
-// import AddProduct from './pages/seller_/AddProduct';
-// import SellerOrders from './pages/seller_/SellerOrders';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -91,9 +88,6 @@ export default function App() {
             <Route path="messages" element={<Messages />} />
             <Route path="profile" element={<Profile />} />
             <Route path="support" element={<Support />} />
-            {/* <Route path="products" element={<SellerProducts />} /> */}
-            {/* <Route path="products/add" element={<AddProduct />} /> */}
-            {/* <Route path="orders" element={<SellerOrders />} /> */}
           </Route>
 
           {/* Admin Routes */}
