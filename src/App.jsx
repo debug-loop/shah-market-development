@@ -17,6 +17,11 @@ import Browse from "./pages/Browse";
 import ProductDetail from './pages/public/ProductDetail';
 import NotFound from './pages/public/NotFound';
 
+// Marketplace Pages
+import Marketplace from './pages/marketplace/Marketplace';
+import SectionView from './pages/marketplace/SectionView';
+import ProductListing from './pages/marketplace/ProductListing';
+
 // Buyer Pages
 import BuyerDashboard from './pages/buyer/BuyerDashboard';
 import BuyerOrders from './pages/buyer/BuyerOrders';
@@ -61,7 +66,12 @@ export default function App() {
           <Route path="/signup/seller" element={<SellerSignup />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          
+
+          {/* Marketplace Routes */}
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/marketplace/:sectionSlug" element={<SectionView />} />
+          <Route path="/marketplace/:sectionSlug/:categorySlug" element={<ProductListing />} />
+
           {/* Buyer Routes */}
           <Route path="/buyer" element={<ProtectedRoute roles={['buyer']}><DashboardLayout role="buyer" /></ProtectedRoute>}>
             <Route path="dashboard" element={<DashboardHome />} />
