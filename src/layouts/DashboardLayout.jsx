@@ -33,7 +33,7 @@ export default function DashboardLayout({ role }) {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <aside className="w-64 bg-white shadow-lg">
+      {/* <aside className="w-64 bg-white shadow-lg">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-primary">
             {role === 'admin' ? 'Admin' : role === 'seller' ? 'Seller' : 'Buyer'} Panel
@@ -56,7 +56,7 @@ export default function DashboardLayout({ role }) {
             Logout
           </button>
         </nav>
-      </aside>
+      </aside> */}
       <main className="flex-1 overflow-auto">
         <div className="p-8">
           <Outlet />
