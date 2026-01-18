@@ -62,11 +62,7 @@ export default function MyProducts() {
       setLoading(true);
       const response = await productService.getSellerProducts();
       if (response.data.success) {
-        // Ensure we always set an array
-        const productsData = response.data.data;
-        setProducts(Array.isArray(productsData) ? productsData : []);
-      } else {
-        setProducts([]);
+        setProducts(response.data.data.products);
       }
     } catch (error: any) {
       console.error('Failed to fetch products:', error);
